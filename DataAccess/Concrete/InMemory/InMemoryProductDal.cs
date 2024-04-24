@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,24 +25,19 @@ namespace DataAccess.Concrete.InMemory
             } ;
         }
 
-        public void Add(Product product)
+        public void Add(Product entity)
         {
-            _products.Add(product);
+            throw new NotImplementedException();
         }
 
-        public void Delete(Product product)
+        public void Delete(Product entity)
         {
-            _products.Remove(_products.SingleOrDefault(p => p.ProductId == product.ProductId));
+            throw new NotImplementedException();
         }
 
         public Product Get(Expression<Func<Product, bool>> filter)
         {
             throw new NotImplementedException();
-        }
-
-        public List<Product> GetAll()
-        {
-            return _products;
         }
 
         public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
@@ -51,16 +47,17 @@ namespace DataAccess.Concrete.InMemory
 
         public List<Product> GetAllByCategory(int categoryId)
         {
-            return _products.Where(p => p.CategoryId == categoryId).ToList();
+            throw new NotImplementedException();
         }
 
-        public void Update(Product product)
+        public List<ProductDetailDto> GetProductDetails()
         {
-            Product productToUpdate = _products.SingleOrDefault(p => p.ProductId == product.ProductId);
-            productToUpdate.CategoryId = product.CategoryId;
-            productToUpdate.ProductName = product.ProductName;
-            productToUpdate.UnitPrice = product.UnitPrice;
-            productToUpdate.UnitsInStock = product.UnitsInStock;
+            throw new NotImplementedException();
+        }
+
+        public void Update(Product entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

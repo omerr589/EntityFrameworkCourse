@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Entites
+namespace Core.Utilities.Results
 {
-    // A class that implements IEntity represents a database table.
-    public interface IEntity
+    public interface IResult
     {
+        bool Success { get; }
+        string Message { get; }
     }
 }
