@@ -65,7 +65,7 @@ namespace Business.Concrete
         {
             if (DateTime.Now.Hour == 21)
             {
-                return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintenanceTime); // At 32, we don't want to List data's
+                return new ErrorDataResult<List<ProductDetailDto>>(Messages.MaintenanceTime); // At 21, we don't want to List data's
             }
 
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
