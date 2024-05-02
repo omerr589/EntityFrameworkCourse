@@ -9,6 +9,9 @@ using DataAccess.Abstract;
 using Entities.DTOs;
 using Core.Utilities.Results;
 using Business.Constants;
+using System.ComponentModel.DataAnnotations;
+using Business.ValidationRules.FluentValidation;
+using FluentValidation;
 
 namespace Business.Concrete
 {
@@ -24,8 +27,20 @@ namespace Business.Concrete
         public IResult Add(Product product)
         {
             // Business Rules
-            if (product.ProductName.Length < 2)
-                return new ErrorResult(Messages.ProductNameInvalid);
+
+            // Business Code -> Örneğin ehliyet için 18 yaşından büyük mü?
+
+            // Validation Code -> Eklenen nesnenin yapısal olarak doğruluğunu kontrol eder. Örneğin şifre kuralları.
+
+            var context = new ValidationContext<Product>(product);
+
+            ProductValidator productValidator = new ProductValidator();
+            var result = productValidator.Validate(context);
+
+            if(!result.IsValid)
+            {
+                throw new FluentValidation.ValidationException(result.Errors);
+            }
 
             _productDal.Add(product);
 
